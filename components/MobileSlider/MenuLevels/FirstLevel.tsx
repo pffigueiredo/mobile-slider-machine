@@ -17,6 +17,7 @@ const FirstLevel = () => {
       show={current.hasTag('firstLevel')}
       menus={current.context.firstLevelMenuData}
       showBack={false}
+      levelTitle="State Machine Slider"
     />
   );
 };

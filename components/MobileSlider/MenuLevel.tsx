@@ -1,6 +1,9 @@
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 import React from 'react';
+import BackSvg, { Back } from '../../shared-components/BackButton';
 import Box from '../../shared-components/Box';
+import { Button } from '../../shared-components/Button';
+import { Heading } from '../../shared-components/Heading';
 import { styled } from '../../stitches.config';
 import { useMobileSliderProvider } from './MobileSliderProvider';
 
@@ -8,6 +11,12 @@ const MenuAnimatedLevelWrapper = styled(motion.div, {
   position: 'absolute',
   height: '100%',
   width: '100%',
+});
+
+const HeaderSection = styled(Box, {
+  marginBottom: '$lg',
+  padding: '$lg',
+  borderBottom: '1px solid lightgrey',
 });
 
 const MenuLevelVariants: Variants = {
@@ -30,6 +39,7 @@ interface MenuLevelProps {
   show: boolean;
   showBack: boolean;
   menus: string[];
+  levelTitle?: string;
 }
 
 const MenuLevel: React.FC<MenuLevelProps> = ({
@@ -37,6 +47,7 @@ const MenuLevel: React.FC<MenuLevelProps> = ({
   menus,
   show,
   showBack,
+  levelTitle,
 }) => {
   const {
     machine: [current, send],
@@ -52,18 +63,33 @@ const MenuLevel: React.FC<MenuLevelProps> = ({
           variants={MenuLevelVariants}
         >
           <Box css={{ backgroundColor: 'white', height: '100%' }}>
+            <HeaderSection css={{ display: 'flex' }}>
+              {showBack && (
+                <Box
+                  clickable
+                  css={{ size: '25px' }}
+                  onClick={() => send('BACK')}
+                >
+                  <BackSvg />
+                </Box>
+              )}
+              <Heading relevance="secondary" css={{ margin: 'auto' }}>
+                {levelTitle}
+              </Heading>
+            </HeaderSection>
+
             {menus.map((menu, index) => {
               return (
                 <Box
                   css={{ padding: '$lg' }}
                   key={index}
+                  clickable
                   onClick={() => onLinkClick(menu)}
                 >
                   {menu}
                 </Box>
               );
             })}
-            {showBack && <button onClick={() => send('BACK')}>Back</button>}
           </Box>
         </MenuAnimatedLevelWrapper>
       )}

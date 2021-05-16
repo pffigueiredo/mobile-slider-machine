@@ -18,6 +18,7 @@ const SecondLevel = () => {
         show={current.hasTag('secondLevel')}
         menus={current.context.secondLevelMenuData}
         showBack={true}
+        levelTitle={current.context.firstLevelMenuName}
       />
     </>
   );

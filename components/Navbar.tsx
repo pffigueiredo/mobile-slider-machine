@@ -27,8 +27,6 @@ const Navbar = () => {
           <rect y="60" width="100" height="20"></rect>
         </svg>
       </Box>
-
-      <Menu />
     </NavbarWrapper>
   );
 };

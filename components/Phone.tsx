@@ -3,17 +3,9 @@ import React, { useState } from 'react';
 import Box from '../shared-components/Box';
 import { Button } from '../shared-components/Button';
 import { keyframes, styled } from '../stitches.config';
+import Menu from './MobileSlider/Menu';
 import { MobileSliderProvider } from './MobileSlider/MobileSliderProvider';
 import Navbar from './Navbar';
-
-const DesktopOnly = styled(Box, {
-  backgroundColor: '$lightBlue',
-  width: '100vw',
-  height: '100vh',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-});
 
 const AnimatedPhone = styled(motion.div, {
   padding: '$lg',
@@ -26,6 +18,8 @@ const PhoneScreen = styled(motion.div, {
   width: '100%',
   height: '100%',
   borderRadius: '$base',
+  position: 'relative',
+  overflow: 'hidden',
 });
 
 const fadeOut = keyframes({
@@ -77,7 +71,10 @@ const Phone = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <DesktopOnly>
+    <Box
+      variant="flexCenter"
+      css={{ backgroundColor: '$lightBlue', width: '100vw', height: '100vh' }}
+    >
       <AnimatedPhone
         initial="closed"
         animate={isOpen ? 'open' : 'closed'}
@@ -94,18 +91,19 @@ const Phone = () => {
                   clickable
                   css={{
                     position: 'absolute',
-                    top: '35px',
-                    right: '32px',
+                    top: '20px',
+                    right: '16px',
                     padding: '$base',
                     size: '2em',
                     color: 'grey',
                     fontWeight: 'bold',
-                    backgroundColor: '$lightBlue',
+                    backgroundColor: 'lightgrey',
                   }}
                   onClick={() => setIsOpen(false)}
                 >
                   X
                 </Box>
+                <Menu />
               </>
             )}
           </MobileSliderProvider>
@@ -119,7 +117,7 @@ const Phone = () => {
       >
         Make it mobile
       </PhoneButton>
-    </DesktopOnly>
+    </Box>
   );
 };
 
