@@ -15,7 +15,7 @@ Install dependencies
 yarn
 ```
 
-Running
+Running locally
 
 ```bash
 yarn dev
