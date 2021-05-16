@@ -1,14 +1,14 @@
-import { AnimatePresence, motion, Variants } from 'framer-motion'
-import React from 'react'
-import Box from '../../shared-components/Box'
-import { styled } from '../../stitches.config'
-import { useMobileSliderProvider } from './MobileSliderProvider'
+import { AnimatePresence, motion, Variants } from 'framer-motion';
+import React from 'react';
+import Box from '../../shared-components/Box';
+import { styled } from '../../stitches.config';
+import { useMobileSliderProvider } from './MobileSliderProvider';
 
 const MenuAnimatedLevelWrapper = styled(motion.div, {
   position: 'absolute',
   height: '100%',
   width: '100%',
-})
+});
 
 const MenuLevelVariants: Variants = {
   open: {
@@ -23,18 +23,24 @@ const MenuLevelVariants: Variants = {
       duration: 0.3,
     },
   },
-}
+};
 
 interface MenuLevelProps {
-  onLinkClick?: (menuName: string) => void
-  show: boolean
-  menus: string[]
+  onLinkClick?: (menuName: string) => void;
+  show: boolean;
+  showBack: boolean;
+  menus: string[];
 }
 
-const MenuLevel: React.FC<MenuLevelProps> = ({ onLinkClick, menus, show }) => {
+const MenuLevel: React.FC<MenuLevelProps> = ({
+  onLinkClick,
+  menus,
+  show,
+  showBack,
+}) => {
   const {
     machine: [current, send],
-  } = useMobileSliderProvider()
+  } = useMobileSliderProvider();
 
   return (
     <AnimatePresence>
@@ -55,16 +61,14 @@ const MenuLevel: React.FC<MenuLevelProps> = ({ onLinkClick, menus, show }) => {
                 >
                   {menu}
                 </Box>
-              )
+              );
             })}
-            {current.hasTag('secondLevel') && (
-              <button onClick={() => send('BACK')}>Back</button>
-            )}
+            {showBack && <button onClick={() => send('BACK')}>Back</button>}
           </Box>
         </MenuAnimatedLevelWrapper>
       )}
     </AnimatePresence>
-  )
-}
+  );
+};
 
-export default MenuLevel
+export default MenuLevel;

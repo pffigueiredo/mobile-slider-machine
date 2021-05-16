@@ -1,15 +1,20 @@
-import Head from 'next/head'
+import Head from 'next/head';
 import React from 'react';
+import Phone from '../components/Phone';
 import { MobileSliderProvider } from '../components/MobileSlider/MobileSliderProvider';
-import Navbar from '../components/Navbar'
-import { global } from '../stitches.config'
+import Navbar from '../components/Navbar';
+import { global, styled } from '../stitches.config';
 
 const globalStyles = global({
-  '*': { margin: 0, padding: 0, boxSizing: 'border-box', fontFamily: 'sans-serif' },
+  '*': {
+    margin: 0,
+    padding: 0,
+    boxSizing: 'border-box',
+    fontFamily: 'sans-serif',
+  },
 });
 
 export const Home = (): JSX.Element => {
-
   globalStyles();
   return (
     <div className="container">
@@ -18,13 +23,11 @@ export const Home = (): JSX.Element => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <MobileSliderProvider>
-        <Navbar />
-      </MobileSliderProvider>
-      <main>
+      <Phone />
 
-      </main>
-    </div>)
-}
+      <main></main>
+    </div>
+  );
+};
 
-export default Home
+export default Home;

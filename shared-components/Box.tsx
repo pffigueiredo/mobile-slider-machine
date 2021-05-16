@@ -1,6 +1,27 @@
-import { styled } from "../stitches.config";
+import { styled } from '../stitches.config';
 
-const Box = styled("div", {
-})
+const Box = styled('div', {
+  variants: {
+    variant: {
+      flexCenter: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+    },
+    shape: {
+      circle: {
+        borderRadius: '50%',
+      },
+    },
+    clickable: {
+      true: {
+        '&:hover': {
+          cursor: 'pointer',
+        },
+      },
+    },
+  },
+});
 
-export default Box
+export default Box;

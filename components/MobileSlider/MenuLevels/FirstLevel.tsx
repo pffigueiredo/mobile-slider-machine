@@ -1,20 +1,24 @@
-import React from 'react'
-import MenuLevel from '../MenuLevel'
-import { useMobileSliderProvider } from '../MobileSliderProvider'
+import React from 'react';
+import MenuLevel from '../MenuLevel';
+import { useMobileSliderProvider } from '../MobileSliderProvider';
 
 const FirstLevel = () => {
+  const {
+    machine: [current, send],
+  } = useMobileSliderProvider();
 
-      const {
-        machine: [current, send],
-      } = useMobileSliderProvider()
+  function onLinkClick(menu) {
+    send({ type: 'NEXT', firstLevelMenuName: menu });
+  }
 
-      function onLinkClick(menu){
-        send({type: "NEXT", firstLevelMenuName: menu})
-      }
+  return (
+    <MenuLevel
+      onLinkClick={onLinkClick}
+      show={current.hasTag('firstLevel')}
+      menus={current.context.firstLevelMenuData}
+      showBack={false}
+    />
+  );
+};
 
-    return (
-        <MenuLevel onLinkClick={onLinkClick} show={current.hasTag('firstLevel')} menus={current.context.firstLevelMenuData} />
-    )
-}
-
-export default FirstLevel
+export default FirstLevel;
