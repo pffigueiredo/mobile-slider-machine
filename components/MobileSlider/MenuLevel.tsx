@@ -1,8 +1,7 @@
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 import React from 'react';
-import BackSvg, { Back } from '../../shared-components/BackButton';
+import BackSvg from '../../shared-components/BackButton';
 import Box from '../../shared-components/Box';
-import { Button } from '../../shared-components/Button';
 import { Heading } from '../../shared-components/Heading';
 import { styled } from '../../stitches.config';
 import { useMobileSliderProvider } from './MobileSliderProvider';
