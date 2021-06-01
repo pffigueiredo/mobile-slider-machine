@@ -4,6 +4,7 @@ import Phone from '../components/Phone';
 import { MobileSliderProvider } from '../components/MobileSlider/MobileSliderProvider';
 import Navbar from '../components/Navbar';
 import { global, styled } from '../stitches.config';
+import Box from '../shared-components/Box';
 
 const globalStyles = global({
   '*': {
@@ -22,6 +23,16 @@ export const Home = (): JSX.Element => {
         <title>State Machine Slider</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Box
+        css={{
+          position: 'absolute',
+          right: 0,
+          width: '200px',
+          height: '200px',
+          backgroundColor: '$darkBlue',
+        }}
+      />
 
       <Phone />
 

@@ -1,4 +1,5 @@
 import { createCss } from '@stitches/react';
+import cssjanus from 'cssjanus';
 
 export const {
   styled,
@@ -43,6 +44,20 @@ export const {
   },
   media: {
     sm: '(min-width: 640px)',
+  },
+  insertionMethod() {
+    let currentCssHead: HTMLElement;
+    let currentCssNode: HTMLElement;
+
+    return (cssText) => {
+      if (typeof document === 'object' && document.dir === 'rtl') {
+        currentCssNode =
+          document.getElementById('stitches') ||
+          Object.assign(document.createElement('style'), { id: 'stitches' });
+
+        currentCssNode.textContent = cssjanus.transform(cssText);
+      }
+    };
   },
   utils: {
     mx: (config) => (value) => ({
